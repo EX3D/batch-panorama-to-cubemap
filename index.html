@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Convert a 360° panorama to a cubemap.">
-  <title>Panorama to Cubemap</title>
+  <meta name="description" content="Convert 360° panoramas to cubemaps.">
+  <title>Panorama to Cubemap (Batch)</title>
   <style>
     body {
       margin: 1em auto;
@@ -13,32 +13,42 @@
       margin-top: 12px;
       margin-bottom: 12px;
     }
-    #cubemap {
+    #output-container {
       width: 800px;
-      height: 600px;
+      min-height: 100px; /* Changed from fixed height */
       position: relative;
       border: 1px solid #888;
       background: #eee;
       margin-top: 15px;
+      padding: 10px;
+    }
+    .result-block {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .cubemap-faces {
+        position: relative;
+        height: 320px; /* Adjust as needed for preview size */
     }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>Panorama to Cubemap</h1>
-    <aside>Convert a 360° panorama to six cube faces.</aside>
+    <h1>Panorama to Cubemap (Batch)</h1>
+    <aside>Convert 360° panoramas to six cube faces.</aside>
   </header>
 
   <main>
     <section>
       <h2>Upload</h2>
-      <label>Upload a panoramic image: <input id="imageInput" type="file" accept="image/*"></label>
+      <label>Upload panoramic images: <input id="imageInput" type="file" accept="image/*" multiple></label>
       <ul>
-        <li>The image should be formatted with the equirectangular projection.</li>
-        <li>The image should have an aspect ratio of 2:1 (the width must be exactly twice the height).</li>
+        <li>Images should be formatted with the equirectangular projection.</li>
+        <li>Images should have an aspect ratio of 2:1.</li>
       </ul>
-      <p>A cubemap will be generated from your image.</p>
+      <p>A cubemap will be generated for each image.</p>
     </section>
 
     <section class="settings">
@@ -61,22 +71,24 @@
 
     <section>
       <h2>Output</h2>
-      <p>Click each cube face to save it to your computer.</p>
-      <div id="cubemap">
+      <p>Click individual cube faces to save them, or use the button to download all as a ZIP file.</p>
+      <button id="downloadAllBtn" disabled>Download All as ZIP</button>
+      <label style="margin-left: 15px;">
+        <input type="checkbox" id="useSubfolders" checked> Create subfolders for each image
+      </label>
+      <div id="output-container">
         <b id="generating" style="visibility:hidden">Generating...</b>
-        <output id="faces"></output>
-      </div>
+        </div>
     </section>
   </main>
 
   <footer>
     <p>
       <small>By <a href="https://github.com/jaxry">Lucas Crane</a></small>
-      <br>
-      <small>Design by <a href="http://motherfuckingwebsite.com/">mf</a></small>
     </p>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
