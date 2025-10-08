@@ -1,10 +1,12 @@
-# Panorama To Cubemap
+# Batch panorama To Cubemap
 
-https://jaxry.github.io/panorama-to-cubemap/
+https://EX3D.github.io/panorama-to-cubemap/
 
-A web app which converts 360° panoramas to six cube faces
+A web app which batch converts 360° panoramas to six cube faces
 
 ## Features
+* Added batch processing and download in .zip file.
 * Runs in your browser by using the Canvas API to manipulate image data.
 * Uses Lanczos interpolation for high quality output.
-* Ability to rotate cubemap to control the orientation of the scene.
+* Renamed cube maps from originalCubemap to originalCubemap_nx.... to avoid naming conflicts
+
